@@ -1,0 +1,32 @@
+### 1. Health Check
+GET http://localhost:3000/health
+
+### 2. Listar Unidades
+GET http://localhost:3000/api/unidades
+
+### 3. Menu Recife
+GET http://localhost:3000/api/unidades/3425ac77-283f-48fe-a3f5-4ddef515df5c/menu
+
+### 4. CRIAR PEDIDO (Execute este!)
+POST http://localhost:3000/api/pedidos
+Content-Type: application/json
+
+{
+  "unidade_id": "3425ac77-283f-48fe-a3f5-4ddef515df5c",
+  "cliente_nome": "Maria Santos",
+  "cliente_email": "maria@email.com",
+  "itens": [
+    {
+      "id": "tapioca",
+      "nome": "Tapioca Doce", 
+      "preco": 8.50,
+      "quantidade": 2
+    },
+    {
+      "id": "cuscuz",
+      "nome": "Cuscuz com Ovo",
+      "preco": 12.00,
+      "quantidade": 1
+    }
+  ]
+}
