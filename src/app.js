@@ -3,6 +3,27 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('./routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'API Raízes do Nordeste',
+      version: '1.0.0',
+      description: 'Documentação da API',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+      },
+    ],
+  },
+  apis: ['./src/routes/*.js'], // onde estão suas rotas
+};
+
+const swaggerSpec = swaggerJsdoc(options);
 
 const app = express();
 
@@ -19,6 +40,9 @@ app.get('/health', (req, res) => {
     message: 'Raízes do Nordeste API v1.0 ✅'
   });
 });
+
+// Swagger
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // API Routes
 app.use('/api', routes);
